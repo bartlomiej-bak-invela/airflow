@@ -141,7 +141,7 @@ spec:
             {{- if .Values.apiServer.extraVolumeMounts }}
               {{- tpl (toYaml .Values.apiServer.extraVolumeMounts) . | nindent 12 }}
             {{- end }}
-          args: {{- include "wait-for-migrations-command" . | indent 10 }}
+          args: {{- include "waitForMigrationsArgs" . | nindent 10 }}
           envFrom: {{- include "custom_airflow_environment_from" . | default "\n  []" | indent 10 }}
           env:
             {{- include "custom_airflow_environment" . | indent 10 }}
